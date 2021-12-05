@@ -51,6 +51,7 @@
 			this.cboRegion = new System.Windows.Forms.ComboBox();
 			this.tpgAdvanced = new System.Windows.Forms.TabPage();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+			this.chkAllowInvalidInput = new Mesen.GUI.Controls.ctrlRiskyOption();
 			this.chkEnableRandomPowerOnState = new Mesen.GUI.Controls.ctrlRiskyOption();
 			this.cboRamPowerOnState = new System.Windows.Forms.ComboBox();
 			this.lblRamPowerOnState = new System.Windows.Forms.Label();
@@ -98,7 +99,7 @@
 			// baseConfigPanel
 			// 
 			this.baseConfigPanel.Location = new System.Drawing.Point(0, 290);
-			this.baseConfigPanel.Size = new System.Drawing.Size(445, 29);
+			this.baseConfigPanel.Size = new System.Drawing.Size(489, 29);
 			this.baseConfigPanel.TabIndex = 4;
 			// 
 			// tabMain
@@ -111,7 +112,7 @@
 			this.tabMain.Location = new System.Drawing.Point(0, 0);
 			this.tabMain.Name = "tabMain";
 			this.tabMain.SelectedIndex = 0;
-			this.tabMain.Size = new System.Drawing.Size(445, 290);
+			this.tabMain.Size = new System.Drawing.Size(489, 290);
 			this.tabMain.TabIndex = 2;
 			// 
 			// tpgGeneral
@@ -431,7 +432,7 @@
 			this.tpgAdvanced.Location = new System.Drawing.Point(4, 22);
 			this.tpgAdvanced.Name = "tpgAdvanced";
 			this.tpgAdvanced.Padding = new System.Windows.Forms.Padding(3);
-			this.tpgAdvanced.Size = new System.Drawing.Size(437, 264);
+			this.tpgAdvanced.Size = new System.Drawing.Size(481, 264);
 			this.tpgAdvanced.TabIndex = 3;
 			this.tpgAdvanced.Text = "Advanced";
 			this.tpgAdvanced.UseVisualStyleBackColor = true;
@@ -441,6 +442,7 @@
 			this.tableLayoutPanel2.ColumnCount = 2;
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tableLayoutPanel2.Controls.Add(this.chkAllowInvalidInput, 0, 3);
 			this.tableLayoutPanel2.Controls.Add(this.chkEnableRandomPowerOnState, 0, 1);
 			this.tableLayoutPanel2.Controls.Add(this.cboRamPowerOnState, 1, 0);
 			this.tableLayoutPanel2.Controls.Add(this.lblRamPowerOnState, 0, 0);
@@ -448,13 +450,24 @@
 			this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-			this.tableLayoutPanel2.RowCount = 4;
+			this.tableLayoutPanel2.RowCount = 5;
+			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(431, 258);
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(475, 258);
 			this.tableLayoutPanel2.TabIndex = 5;
+			// 
+			// chkAllowInvalidInput
+			// 
+			this.chkAllowInvalidInput.Checked = false;
+			this.tableLayoutPanel2.SetColumnSpan(this.chkAllowInvalidInput, 2);
+			this.chkAllowInvalidInput.Location = new System.Drawing.Point(0, 75);
+			this.chkAllowInvalidInput.Name = "chkAllowInvalidInput";
+			this.chkAllowInvalidInput.Size = new System.Drawing.Size(447, 24);
+			this.chkAllowInvalidInput.TabIndex = 8;
+			this.chkAllowInvalidInput.Text = "Allow invalid input (e.g Down + Up or Left + Right at the same time)";
 			// 
 			// chkEnableRandomPowerOnState
 			// 
@@ -818,7 +831,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(445, 319);
+			this.ClientSize = new System.Drawing.Size(489, 319);
 			this.Controls.Add(this.tabMain);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MaximizeBox = false;
@@ -911,5 +924,6 @@
 	  private System.Windows.Forms.RadioButton radBsxCustomTime;
 	  private System.Windows.Forms.DateTimePicker dtpBsxCustomTime;
 	  private System.Windows.Forms.DateTimePicker dtpBsxCustomDate;
+	  private Controls.ctrlRiskyOption chkAllowInvalidInput;
    }
 }

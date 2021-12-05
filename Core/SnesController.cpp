@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "EmuSettings.h"
 #include "SnesController.h"
 #include "Console.h"
 #include "Ppu.h"
@@ -16,6 +17,9 @@ string SnesController::GetKeyNames()
 
 void SnesController::InternalSetStateFromInput()
 {
+	shared_ptr<EmuSettings> settings = _console->GetSettings();
+	bool allowInvalidInput = settings->GetEmulationConfig().AllowInvalidInput;
+
 	for(KeyMapping keyMapping : _keyMappings) {
 		SetPressedState(Buttons::A, keyMapping.A);
 		SetPressedState(Buttons::B, keyMapping.B);
@@ -39,6 +43,18 @@ void SnesController::InternalSetStateFromInput()
 			SetPressedState(Buttons::Y, keyMapping.TurboY);
 			SetPressedState(Buttons::L, keyMapping.TurboL);
 			SetPressedState(Buttons::R, keyMapping.TurboR);
+		}
+
+		if (!allowInvalidInput) {
+			//If both U+D or L+R are pressed at the same time, act as if neither is pressed
+			if (IsPressed(Buttons::Up) && IsPressed(Buttons::Down)) {
+				ClearBit(Buttons::Down);
+				ClearBit(Buttons::Up);
+			}
+			if (IsPressed(Buttons::Left) && IsPressed(Buttons::Right)) {
+				ClearBit(Buttons::Left);
+				ClearBit(Buttons::Right);
+			}
 		}
 	}
 }

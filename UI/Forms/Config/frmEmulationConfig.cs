@@ -33,6 +33,7 @@ namespace Mesen.GUI.Forms.Config
 			AddBinding(nameof(EmulationConfig.RamPowerOnState), cboRamPowerOnState);
 			AddBinding(nameof(EmulationConfig.EnableRandomPowerOnState), chkEnableRandomPowerOnState);
 			AddBinding(nameof(EmulationConfig.EnableStrictBoardMappings), chkEnableStrictBoardMappings);
+			AddBinding(nameof(EmulationConfig.AllowInvalidInput), chkAllowInvalidInput);
 
 			AddBinding(nameof(EmulationConfig.PpuExtraScanlinesBeforeNmi), nudExtraScanlinesBeforeNmi);
 			AddBinding(nameof(EmulationConfig.PpuExtraScanlinesAfterNmi), nudExtraScanlinesAfterNmi);

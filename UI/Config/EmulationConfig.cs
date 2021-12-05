@@ -28,7 +28,9 @@ namespace Mesen.GUI.Config
 		public RamState RamPowerOnState = RamState.Random;
 
 		public long BsxCustomDate = -1;
-		
+
+		[MarshalAs(UnmanagedType.I1)] public bool AllowInvalidInput = false;
+
 		public void ApplyConfig()
 		{
 			ConfigApi.SetEmulationConfig(this);
