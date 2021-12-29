@@ -17,14 +17,15 @@ InputHud::InputHud(Console* console)
 	_console = console;
 }
 
-void InputHud::DrawController(int port, ControlDeviceState state, int x, int y, int frameNumber)
+void InputHud::DrawController(int port, ControlDeviceState state, int x, int iny, int frameNumber)
 {
 	
 	SnesController controller(_console, 0, KeyMappingSet());
 	controller.SetRawState(state);
 
+	int y = iny + 10;
 	shared_ptr<DebugHud> hud = _console->GetDebugHud();
-	hud->DrawRectangle(0 + x, 0 + y, 35, 14, 0x80CCCCCC, true, 1, frameNumber);
+	hud->DrawRectangle(0 + x, 0 + y, 35, 14, 0x30CCCCCC, true, 1, frameNumber);
 	hud->DrawRectangle(0 + x, 0 + y, 35, 14, color[0], false, 1, frameNumber);
 	hud->DrawRectangle(5 + x, 3 + y, 3, 3, color[controller.IsPressed(SnesController::Buttons::Up)], true, 1, frameNumber);
 	hud->DrawRectangle(5 + x, 9 + y, 3, 3, color[controller.IsPressed(SnesController::Buttons::Down)], true, 1, frameNumber);
@@ -42,6 +43,13 @@ void InputHud::DrawController(int port, ControlDeviceState state, int x, int y, 
 
 	hud->DrawRectangle(13 + x, 9 + y, 4, 2, color[controller.IsPressed(SnesController::Buttons::Select)], true, 1, frameNumber);
 	hud->DrawRectangle(18 + x, 9 + y, 4, 2, color[controller.IsPressed(SnesController::Buttons::Start)], true, 1, frameNumber);
+
+	if (port == 0) {
+		uint32_t framecount = _console->GetPpu()->GetFrameCount();
+		hud->DrawRectangle(0 + x, iny, 35, 9, 0x30CCCCCC, true, 1, frameNumber);
+		hud->DrawRectangle(0 + x, iny, 35, 9, color[0], false, 1, frameNumber);
+		hud->DrawSmallDigits(32 + x, 1 + iny, framecount, 6, color[0], 1, frameNumber);
+	}
 
 	switch(port) {
 		case 0:
@@ -110,12 +118,12 @@ void InputHud::DrawControllers(OverscanDimensions overscan, int frameNumber)
 			break;
 		case InputDisplayPosition::BottomLeft:
 			xStart = overscan.Left + 3;
-			yStart = 240 - overscan.Bottom - 18;
+			yStart = 230 - overscan.Bottom - 18;
 			yOffset = -yOffset;
 			break;
 		case InputDisplayPosition::BottomRight:
 			xStart = 256 - overscan.Right - 38;
-			yStart = 240 - overscan.Bottom - 18;
+			yStart = 230 - overscan.Bottom - 18;
 			xOffset = -xOffset;
 			yOffset = -yOffset;
 			break;
