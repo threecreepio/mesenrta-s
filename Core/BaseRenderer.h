@@ -33,6 +33,8 @@ protected:
 
 	bool IsMessageShown();	
 
+	float GetUIScale();
+
 	void DisplayMessage(string title, string message);
 	void DrawToasts();
 	
