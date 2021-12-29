@@ -32,6 +32,7 @@ public:
 	vector<CheatCode> GetCheats();
 
 	__forceinline void ApplyCheat(uint32_t addr, uint8_t &value);
+	bool HasCheats();
 };
 
 __forceinline void CheatManager::ApplyCheat(uint32_t addr, uint8_t &value)

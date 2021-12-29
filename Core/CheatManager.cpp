@@ -135,6 +135,11 @@ void CheatManager::AddStringCheat(string code)
 	}
 }
 
+bool CheatManager::HasCheats()
+{
+	return _hasCheats;
+}
+
 vector<CheatCode> CheatManager::GetCheats()
 {
 	return _cheats;
