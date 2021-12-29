@@ -521,6 +521,99 @@
     <ClInclude Include="Cx4Debugger.h">
       <Filter>Debugger\Debuggers</Filter>
     </ClInclude>
+    <ClInclude Include="GbCpu.h">
+      <Filter>GB</Filter>
+    </ClInclude>
+    <ClInclude Include="GbTypes.h">
+      <Filter>GB</Filter>
+    </ClInclude>
+    <ClInclude Include="Gameboy.h">
+      <Filter>GB</Filter>
+    </ClInclude>
+    <ClInclude Include="GbMemoryManager.h">
+      <Filter>GB</Filter>
+    </ClInclude>
+    <ClInclude Include="GbPpu.h">
+      <Filter>GB</Filter>
+    </ClInclude>
+    <ClInclude Include="GbTimer.h">
+      <Filter>GB</Filter>
+    </ClInclude>
+    <ClInclude Include="GameboyDisUtils.h">
+      <Filter>Debugger\Disassembler</Filter>
+    </ClInclude>
+    <ClInclude Include="GbDebugger.h">
+      <Filter>Debugger\Debuggers</Filter>
+    </ClInclude>
+    <ClInclude Include="GbMbc1.h">
+      <Filter>GB\Carts</Filter>
+    </ClInclude>
+    <ClInclude Include="GbCart.h">
+      <Filter>GB\Carts</Filter>
+    </ClInclude>
+    <ClInclude Include="GbCartFactory.h">
+      <Filter>GB\Carts</Filter>
+    </ClInclude>
+    <ClInclude Include="SnesMemoryType.h">
+      <Filter>Debugger</Filter>
+    </ClInclude>
+    <ClInclude Include="GameboyHeader.h">
+      <Filter>GB</Filter>
+    </ClInclude>
+    <ClInclude Include="GbApu.h">
+      <Filter>GB\APU</Filter>
+    </ClInclude>
+    <ClInclude Include="GbSquareChannel.h">
+      <Filter>GB\APU</Filter>
+    </ClInclude>
+    <ClInclude Include="GbWaveChannel.h">
+      <Filter>GB\APU</Filter>
+    </ClInclude>
+    <ClInclude Include="GbNoiseChannel.h">
+      <Filter>GB\APU</Filter>
+    </ClInclude>
+    <ClInclude Include="GbMbc5.h">
+      <Filter>GB\Carts</Filter>
+    </ClInclude>
+    <ClInclude Include="GbMbc2.h">
+      <Filter>GB\Carts</Filter>
+    </ClInclude>
+    <ClInclude Include="GbMbc3.h">
+      <Filter>GB\Carts</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>Debugger\EventManager</Filter>
+    </ClInclude>
+    <ClInclude Include="GbEventManager.h">
+      <Filter>Debugger\EventManager</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseEventManager.h">
+      <Filter>Debugger\EventManager</Filter>
+    </ClInclude>
+    <ClInclude Include="GbDmaController.h">
+      <Filter>GB</Filter>
+    </ClInclude>
+    <ClInclude Include="Assembler.h">
+      <Filter>Debugger\Assembler</Filter>
+    </ClInclude>
+    <ClInclude Include="GbAssembler.h">
+      <Filter>Debugger\Assembler</Filter>
+    </ClInclude>
+    <ClInclude Include="IAssembler.h">
+      <Filter>Debugger\Assembler</Filter>
+    </ClInclude>
+    <ClInclude Include="SuperGameboy.h">
+      <Filter>SNES\Coprocessors\SuperGameboy</Filter>
+    </ClInclude>
+    <ClInclude Include="GbBootRom.h">
+      <Filter>GB</Filter>
+    </ClInclude>
+    <ClInclude Include="HistoryViewer.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawSmallDigitsCommand.h">
+      <Filter>Video\DebugHud</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp" />

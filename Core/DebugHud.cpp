@@ -7,6 +7,7 @@
 #include "DrawRectangleCommand.h"
 #include "DrawStringCommand.h"
 #include "DrawScreenBufferCommand.h"
+#include "DrawSmallDigitsCommand.h"
 
 DebugHud::DebugHud()
 {
@@ -70,5 +71,13 @@ void DebugHud::DrawString(int x, int y, string text, int color, int backColor, i
 	auto lock = _commandLock.AcquireSafe();
 	if(_commands.size() < DebugHud::MaxCommandCount) {
 		_commands.push_back(unique_ptr<DrawStringCommand>(new DrawStringCommand(x, y, text, color, backColor, frameCount, startFrame)));
+	}
+}
+
+void DebugHud::DrawSmallDigits(int x, int y, int digits, int length, int color, int frameCount, int startFrame)
+{
+	auto lock = _commandLock.AcquireSafe();
+	if (_commands.size() < DebugHud::MaxCommandCount) {
+		_commands.push_back(unique_ptr<DrawSmallDigitsCommand>(new DrawSmallDigitsCommand(x, y, digits, length, color, frameCount, startFrame)));
 	}
 }
