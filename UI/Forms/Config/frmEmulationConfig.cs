@@ -39,6 +39,12 @@ namespace Mesen.GUI.Forms.Config
 			AddBinding(nameof(EmulationConfig.PpuExtraScanlinesAfterNmi), nudExtraScanlinesAfterNmi);
 			AddBinding(nameof(EmulationConfig.GsuClockSpeed), nudGsuClockSpeed);
 
+#if DISABLE_RUNAHEAD
+			lblRunAhead.Visible = false;
+			lblRunAheadFrames.Visible = false;
+			nudRunAheadFrames.Visible = false;
+#endif
+
 			long customDate = ConfigManager.Config.Emulation.BsxCustomDate;
 			if(customDate >= 0) {
 				DateTime stamp;

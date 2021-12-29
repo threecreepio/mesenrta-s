@@ -125,7 +125,10 @@ void Console::Run()
 	_lastFrameTimer.Reset();
 
 	while(!_stopFlag) {
-		bool useRunAhead = _settings->GetEmulationConfig().RunAheadFrames > 0 && !_debugger && !_rewindManager->IsRewinding() && _settings->GetEmulationSpeed() > 0 && _settings->GetEmulationSpeed() <= 100;
+		bool useRunAhead = false;
+#ifndef DISABLE_RUNAHEAD
+		useRunAhead = _settings->GetEmulationConfig().RunAheadFrames > 0 && !_debugger && !_rewindManager->IsRewinding() && _settings->GetEmulationSpeed() > 0 && _settings->GetEmulationSpeed() <= 100;
+#endif
 		if(useRunAhead) {
 			RunFrameWithRunAhead();
 		} else {
