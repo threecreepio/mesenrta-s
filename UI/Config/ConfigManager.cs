@@ -26,9 +26,9 @@ namespace Mesen.GUI.Config
 			get
 			{
 				if(Program.IsMono) {
-					return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), ".config", "mesen-s");
+					return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), ".config", "mesenrta-s");
 				} else {
-					return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Mesen-S");
+					return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "MesenRTA-S");
 				}
 			}
 		}
