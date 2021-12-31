@@ -11,6 +11,7 @@ private:
 	Console* _console;
 
 	void DrawController(int port, ControlDeviceState state, int x, int y, int frameNumber);
+	void DrawFrameCounter(int x, int y, bool adjustDown, int frameNumber);
 
 public:
 	InputHud(Console *console);
