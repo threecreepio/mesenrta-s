@@ -20,9 +20,6 @@ InputHud::InputHud(Console* console)
 
 int GetBackgroundColor(Console* console)
 {
-	bool isCheating = console->GetCheatManager()->HasCheats();
-	if (isCheating) return 0x00117111;
-
 	int bg = 0x00711111;
 	bool isDebugging = console->IsDebugging();
 	if (isDebugging) return bg;
@@ -32,6 +29,16 @@ int GetBackgroundColor(Console* console)
 
 	bool isMemoryModified = console->IsUserMemoryModified();
 	if (isMemoryModified) return bg;
+
+	int emulationSpeed = console->GetSettings()->GetEmulationSpeed();
+	if (emulationSpeed != 100) return bg;
+
+	EmulationConfig config = console->GetSettings()->GetEmulationConfig();
+	bool isOverclocked = config.PpuExtraScanlinesAfterNmi != 0 || config.PpuExtraScanlinesBeforeNmi != 0 || config.GsuClockSpeed != 100 || config.RunAheadFrames != 0;
+	if (isOverclocked) return bg;
+
+	bool isCheating = console->GetCheatManager()->HasCheats();
+	if (isCheating) return 0x00117111;
 
 	return 0x00111111;
 }
