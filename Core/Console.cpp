@@ -309,8 +309,24 @@ void Console::Stop(bool sendNotification)
 	}
 }
 
+void Console::ShowResetStatus(int resetType) {
+	std::string version = GetSettings()->GetVersionString();
+	std::string resetTypeMsg[3] = { "Reset", "HardReset", "GameLoaded" };
+	
+	string modelName = GetRegion() == ConsoleRegion::Pal ? "PAL" : "NTSC";
+	string messageTitle = version + " " + modelName + " " + MessageManager::Localize(resetTypeMsg[resetType]);
+	string messageBody = IsUserMemoryModified() ? "Modified %1" : "%1";
+
+	MessageManager::DisplayMessage(messageTitle, messageBody, GetRomInfo().RomFile.GetSha1Hash());
+	if (resetType == 0) {
+		vector<CheatCode> cheats = GetCheatManager()->GetCheats();
+		GetCheatManager()->SetCheats(cheats);
+	}
+}
+
 void Console::Reset()
 {
+	ShowResetStatus(0);
 	shared_ptr<Debugger> debugger = _debugger;
 
 	_lockCounter++;
@@ -442,11 +458,7 @@ bool Console::LoadRom(VirtualFile romFile, VirtualFile patchFile, bool stopRom, 
 
 		_paused = false;
 
-		if(!forPowerCycle) {
-			string modelName = _region == ConsoleRegion::Pal ? "PAL" : "NTSC";
-			string messageTitle = MessageManager::Localize("GameLoaded") + " (" + modelName + ")";
-			MessageManager::DisplayMessage(messageTitle, FolderUtilities::GetFilename(GetRomInfo().RomFile.GetFileName(), false));
-		}
+		ShowResetStatus(forPowerCycle ? 1 : 2);
 
 		if(stopRom) {
 			#ifndef LIBRETRO

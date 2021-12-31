@@ -109,6 +109,7 @@ public:
 	void Run();
 	void RunSingleFrame();
 	void Stop(bool sendNotification);
+	void ShowResetStatus(int resetType);
 
 	void ProcessEndOfFrame();
 
