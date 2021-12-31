@@ -1367,7 +1367,7 @@ void Ppu::ConvertToHiRes()
 void Ppu::ApplyHiResMode()
 {
 	//When overscan mode is off, center the 224-line picture in the center of the 239-line output buffer
-	uint16_t scanline = _overscanFrame ? (_scanline - 1) : (_scanline + 6);
+	uint16_t scanline = (_scanline - 1); // _overscanFrame ? (_scanline - 1) : (_scanline + 6);
 
 	if(!_useHighResOutput) {
 		memcpy(_currentBuffer + (scanline << 8) + _drawStartX, _mainScreenBuffer + _drawStartX, (_drawEndX - _drawStartX + 1) << 1);
@@ -1438,15 +1438,7 @@ void Ppu::ProcessWindowMaskSettings(uint8_t value, uint8_t offset)
 void Ppu::SendFrame()
 {
 	uint16_t width = _useHighResOutput ? 512 : 256;
-	uint16_t height = _useHighResOutput ? 478 : 239;
-
-	if(!_overscanFrame) {
-		//Clear the top 7 and bottom 8 rows
-		int top = (_useHighResOutput ? 14 : 7);
-		int bottom = (_useHighResOutput ? 16 : 8);
-		memset(_currentBuffer, 0, width * top * sizeof(uint16_t));
-		memset(_currentBuffer + width * (height - bottom), 0, width * bottom * sizeof(uint16_t));
-	}
+	uint16_t height = _useHighResOutput ? 478 : 224;
 
 	_console->GetNotificationManager()->SendNotification(ConsoleNotificationType::PpuFrameDone);
 
