@@ -19,7 +19,7 @@ VideoDecoder::VideoDecoder(shared_ptr<Console> console)
 	_console = console;
 	_frameChanged = false;
 	_stopFlag = false;
-	_baseFrameInfo = { 512, 478 };
+	_baseFrameInfo = { 256*2, 224*2-1 };
 	_lastFrameInfo = _baseFrameInfo;
 	UpdateVideoFilter();
 	_videoFilter->SetBaseFrameInfo(_baseFrameInfo);
