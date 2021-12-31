@@ -37,6 +37,29 @@ namespace Mesen.GUI
 			MesenMsgBox.Show("UnexpectedError", MessageBoxButtons.OK, MessageBoxIcon.Error, e.ExceptionObject.ToString());
 		}
 
+		[DebuggerNonUserCode]
+		private static Assembly LoadAssemblies(object sender, ResolveEventArgs e)
+		{
+			string assemblyFile = e.Name.Contains(',') ? e.Name.Substring(0, e.Name.IndexOf(',')) : e.Name;
+			assemblyFile += ".dll";
+
+			string absoluteFolder = new FileInfo((new System.Uri(Assembly.GetExecutingAssembly().CodeBase)).LocalPath).Directory.FullName;
+			string targetPath = Path.Combine(ConfigManager.HomeFolder, assemblyFile);
+
+			try
+			{
+				if (File.Exists(targetPath))
+				{
+					return Assembly.LoadFile(targetPath);
+				}
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+			return null;
+		}
+
 		/// <summary>
 		/// The main entry point for the application.
 		/// </summary>
@@ -78,6 +101,7 @@ namespace Mesen.GUI
 						return;
 					}
 				}
+				AppDomain.CurrentDomain.AssemblyResolve += LoadAssemblies;
 				Directory.CreateDirectory(ConfigManager.HomeFolder);
 				Directory.SetCurrentDirectory(ConfigManager.HomeFolder);
 				try {
