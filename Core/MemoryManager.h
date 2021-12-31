@@ -23,6 +23,7 @@ public:
 
 private:
 	Console* _console;
+	bool _isUserModified = false;
 
 	shared_ptr<RegisterHandlerA> _registerHandlerA;
 	shared_ptr<RegisterHandlerB> _registerHandlerB;
@@ -53,10 +54,12 @@ private:
 	void Exec();
 
 public:
-	void Initialize(Console* console);
+	void Initialize(Console* console, bool userModified);
 	virtual ~MemoryManager();
 
 	void Reset();
+	bool IsUserModified();
+	void SetUserModified(bool userModified);
 
 	void GenerateMasterClockTable();
 

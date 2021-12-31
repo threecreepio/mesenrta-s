@@ -19,8 +19,9 @@
 #include "../Utilities/Serializer.h"
 #include "../Utilities/HexUtilities.h"
 
-void MemoryManager::Initialize(Console *console)
+void MemoryManager::Initialize(Console *console, bool userModified)
 {
+	_isUserModified = userModified;
 	_masterClock = 0;
 	_openBus = 0;
 	_cpuSpeed = 8;
@@ -398,6 +399,16 @@ void MemoryManager::SetCpuSpeed(uint8_t speed)
 	_cpuSpeed = speed;
 }
 
+bool MemoryManager::IsUserModified()
+{
+	return _isUserModified;
+}
+
+void MemoryManager::SetUserModified(bool userModified)
+{
+	_isUserModified = userModified;
+}
+
 SnesMemoryType MemoryManager::GetMemoryTypeBusA()
 {
 	return _memTypeBusA;
@@ -417,7 +428,7 @@ bool MemoryManager::IsWorkRam(uint32_t cpuAddress)
 
 void MemoryManager::Serialize(Serializer &s)
 {
-	s.Stream(_masterClock, _openBus, _cpuSpeed, _hClock, _dramRefreshPosition, _hdmaInitPosition);
+	s.Stream(_masterClock, _openBus, _cpuSpeed, _hClock, _dramRefreshPosition, _hdmaInitPosition, _isUserModified);
 	s.StreamArray(_workRam, MemoryManager::WorkRamSize);
 	s.StreamArray(_hasEvent, sizeof(_hasEvent));
 	s.Stream(_registerHandlerB.get());

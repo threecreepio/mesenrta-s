@@ -437,7 +437,7 @@ bool Console::LoadRom(VirtualFile romFile, VirtualFile patchFile, bool stopRom, 
 		}
 
 		_cpu.reset(new Cpu(this));
-		_memoryManager->Initialize(this);
+		_memoryManager->Initialize(this, IsUserMemoryModified());
 		_internalRegisters->Initialize(this);
 
 		if(debuggerActive) {
@@ -472,6 +472,15 @@ bool Console::LoadRom(VirtualFile romFile, VirtualFile patchFile, bool stopRom, 
 
 	_settings->SetEmulationConfig(orgConfig);
 	return result;
+}
+
+bool Console::IsUserMemoryModified()
+{
+	shared_ptr<MemoryManager> memoryManager = _memoryManager;
+	if (memoryManager) {
+		return memoryManager->IsUserModified();
+	}
+	return false;
 }
 
 RomInfo Console::GetRomInfo()

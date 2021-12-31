@@ -29,6 +29,7 @@ MemoryDumper::MemoryDumper(Debugger* debugger)
 
 void MemoryDumper::SetMemoryState(SnesMemoryType type, uint8_t *buffer, uint32_t length)
 {
+	_memoryManager->SetUserModified(true);
 	if(length > GetMemorySize(type)) {
 		return;
 	}
@@ -152,6 +153,7 @@ void MemoryDumper::GetMemoryState(SnesMemoryType type, uint8_t *buffer)
 
 void MemoryDumper::SetMemoryValues(SnesMemoryType memoryType, uint32_t address, uint8_t* data, uint32_t length)
 {
+	_memoryManager->SetUserModified(true);
 	DebugBreakHelper helper(_debugger);
 	for(uint32_t i = 0; i < length; i++) {
 		SetMemoryValue(memoryType, address+i, data[i], true);
@@ -160,6 +162,7 @@ void MemoryDumper::SetMemoryValues(SnesMemoryType memoryType, uint32_t address, 
 
 void MemoryDumper::SetMemoryValue(SnesMemoryType memoryType, uint32_t address, uint8_t value, bool disableSideEffects)
 {
+	_memoryManager->SetUserModified(true);
 	if(address >= GetMemorySize(memoryType)) {
 		return;
 	}
@@ -256,6 +259,7 @@ uint16_t MemoryDumper::GetMemoryValueWord(SnesMemoryType memoryType, uint32_t ad
 
 void MemoryDumper::SetMemoryValueWord(SnesMemoryType memoryType, uint32_t address, uint16_t value, bool disableSideEffects)
 {
+	_memoryManager->SetUserModified(true);
 	DebugBreakHelper helper(_debugger);
 	SetMemoryValue(memoryType, address, (uint8_t)value, disableSideEffects);
 	SetMemoryValue(memoryType, address + 1, (uint8_t)(value >> 8), disableSideEffects);

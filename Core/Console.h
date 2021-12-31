@@ -122,6 +122,7 @@ public:
 	void Pause();
 	void Resume();
 	bool IsPaused();
+	bool IsUserMemoryModified();
 
 	bool LoadRom(VirtualFile romFile, VirtualFile patchFile, bool stopRom = true, bool forPowerCycle = false);
 	RomInfo GetRomInfo();
