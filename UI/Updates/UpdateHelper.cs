@@ -35,20 +35,23 @@ namespace Mesen.GUI.Updates
 		{
 			Task.Run(() => {
 				try {
-					using(var client = new WebClient()) {
-						XmlDocument xmlDoc = new XmlDocument();
-
-						string platform = Program.IsMono ? "linux" : "win";
-						xmlDoc.LoadXml(client.DownloadString("https://www.mesen.ca/snes/Services/GetLatestVersion.php?v=" + EmuApi.GetMesenVersion().ToString(3) + "&p=" + platform + "&l=" + ResourceHelper.GetLanguageCode()));
+					using(var client = new WebClient())
+					{
 						Version currentVersion = EmuApi.GetMesenVersion();
-						Version latestVersion = new Version(xmlDoc.SelectSingleNode("VersionInfo/LatestVersion").InnerText);
-						string changeLog = xmlDoc.SelectSingleNode("VersionInfo/ChangeLog").InnerText;
-						string fileHash = xmlDoc.SelectSingleNode("VersionInfo/Sha1Hash").InnerText;
-						string donateText = xmlDoc.SelectSingleNode("VersionInfo/DonateText")?.InnerText;
+						client.Headers.Add("User-Agent", "Mesen Updater");
+						var response = client.DownloadString("https://api.github.com/repos/threecreepio/mesenrta-s/releases/latest");
+						dynamic obj = Newtonsoft.Json.JsonConvert.DeserializeObject(response);
+						var latestVersion = new Version((string)obj.name);
+						var changeLog = ((string)obj.body) ?? "";
+						var downloadUrl = ((Newtonsoft.Json.Linq.JArray)obj.assets)
+							.Select(asset => asset["browser_download_url"])
+							.Where(url => url != null && url.ToString().EndsWith("-win.zip"))
+							.Select(url => url.ToString())
+							.FirstOrDefault();
 
-						if(latestVersion > currentVersion) {
+						if (latestVersion > currentVersion) {
 							frmMain.Instance.BeginInvoke((MethodInvoker)(() => {
-								using(frmUpdatePrompt frmUpdate = new frmUpdatePrompt(currentVersion, latestVersion, changeLog, fileHash, donateText)) {
+								using(frmUpdatePrompt frmUpdate = new frmUpdatePrompt(currentVersion, latestVersion, changeLog, downloadUrl)) {
 									if(frmUpdate.ShowDialog(null, frmMain.Instance) == DialogResult.OK) {
 										frmMain.Instance.Close();
 									}
