@@ -185,7 +185,7 @@
 			// 
 			this.ctrlRenderer.Location = new System.Drawing.Point(0, 0);
 			this.ctrlRenderer.Name = "ctrlRenderer";
-			this.ctrlRenderer.Size = new System.Drawing.Size(512, 478);
+			this.ctrlRenderer.Size = new System.Drawing.Size(512, 448);
 			this.ctrlRenderer.TabIndex = 0;
 			// 
 			// mnuMain
@@ -1300,7 +1300,7 @@
 			this.pnlRenderer.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnlRenderer.Location = new System.Drawing.Point(0, 24);
 			this.pnlRenderer.Name = "pnlRenderer";
-			this.pnlRenderer.Size = new System.Drawing.Size(512, 478);
+			this.pnlRenderer.Size = new System.Drawing.Size(512, 447);
 			this.pnlRenderer.TabIndex = 2;
 			// 
 			// ctrlRecentGames
@@ -1325,7 +1325,7 @@
 			this.AllowDrop = true;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(512, 502);
+			this.ClientSize = new System.Drawing.Size(512, 471);
 			this.Controls.Add(this.ctrlRecentGames);
 			this.Controls.Add(this.pnlRenderer);
 			this.Controls.Add(this.mnuMain);
