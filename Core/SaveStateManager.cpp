@@ -118,7 +118,7 @@ void SaveStateManager::SaveState(int stateIndex, bool displayMessage)
 void SaveStateManager::SaveScreenshotData(ostream& stream)
 {
 	bool isHighRes = _console->GetPpu()->IsHighResOutput();
-	uint32_t height = isHighRes ? 478 : 239;
+	uint32_t height = isHighRes ? 478 : 224;
 	uint32_t width = isHighRes ? 512 : 256;
 
 	stream.write((char*)&width, sizeof(uint32_t));
