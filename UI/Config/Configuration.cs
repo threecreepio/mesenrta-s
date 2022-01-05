@@ -14,7 +14,7 @@ namespace Mesen.GUI.Config
 	{
 		private bool _needToSave = false;
 
-		public string Version = "0.4.2";
+		public string Version = "0.4.3";
 		public VideoConfig Video;
 		public AudioConfig Audio;
 		public InputConfig Input;
