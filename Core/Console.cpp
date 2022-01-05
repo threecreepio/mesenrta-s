@@ -420,6 +420,7 @@ bool Console::LoadRom(VirtualFile romFile, VirtualFile patchFile, bool stopRom, 
 
 		UpdateRegion();
 
+		bool isUserMemoryModified = forPowerCycle ? IsUserMemoryModified() : false;
 		_internalRegisters.reset(new InternalRegisters());
 		_memoryManager.reset(new MemoryManager());
 		_ppu.reset(new Ppu(this));
@@ -437,7 +438,7 @@ bool Console::LoadRom(VirtualFile romFile, VirtualFile patchFile, bool stopRom, 
 		}
 
 		_cpu.reset(new Cpu(this));
-		_memoryManager->Initialize(this, IsUserMemoryModified());
+		_memoryManager->Initialize(this, isUserMemoryModified);
 		_internalRegisters->Initialize(this);
 
 		if(debuggerActive) {
