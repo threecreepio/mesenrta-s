@@ -153,7 +153,7 @@ void Console::Run()
 
 	_emulationThreadId = thread::id();
 
-	PlatformUtilities::RestoreTimerResolution();
+	PlatformUtilities::EnableHighResolutionTimer();
 }
 
 bool Console::ProcessSystemActions()
@@ -594,12 +594,13 @@ void Console::WaitForPauseEnd()
 	_runLock.Release();
 
 	PlatformUtilities::EnableScreensaver();
-	PlatformUtilities::RestoreTimerResolution();
+	PlatformUtilities::EnableHighResolutionTimer();
 	while(_paused && !_stopFlag && !_debugger) {
 		//Sleep until emulation is resumed
 		std::this_thread::sleep_for(std::chrono::duration<int, std::milli>(30));
 	}
 
+	PlatformUtilities::EnableHighResolutionTimer();
 	PlatformUtilities::DisableScreensaver();
 	_runLock.Acquire();
 	if(!_stopFlag) {
