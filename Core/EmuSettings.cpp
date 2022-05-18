@@ -21,10 +21,10 @@ EmuSettings::EmuSettings(Console* console)
 
 uint32_t EmuSettings::GetVersion()
 {
-	//Version 0.4.4
+	//Version 0.4.5
 	uint16_t major = 0;
 	uint8_t minor = 4;
-	uint8_t revision = 4;
+	uint8_t revision = 5;
 	return (major << 16) | (minor << 8) | revision;
 }
 
