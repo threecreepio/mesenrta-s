@@ -368,9 +368,9 @@ extern "C" {
 			if(value == "Random Values (Default)") {
 				emulation.RamPowerOnState = RamState::Random;
 			} else if(value == "All 0s") {
-				emulation.RamPowerOnState = RamState::AllZeros;
+				emulation.RamPowerOnState = RamState::Fixed55;
 			} else if(value == "All 1s") {
-				emulation.RamPowerOnState = RamState::AllOnes;
+				emulation.RamPowerOnState = RamState::FixedFF;
 			}
 		}
 

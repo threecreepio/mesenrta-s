@@ -537,7 +537,7 @@ void BaseCartridge::ApplyConfigOverrides()
 	if(name == "POWERDRIVE" || name == "DEATH BRADE" || name == "RPG SAILORMOON") {
 		//These games work better when ram is initialized to $FF
 		EmulationConfig cfg = _console->GetSettings()->GetEmulationConfig();
-		cfg.RamPowerOnState = RamState::AllOnes;
+		cfg.RamPowerOnState = RamState::FixedFF;
 		_console->GetSettings()->SetEmulationConfig(cfg);
 	} else if(name == "SUPER KEIBA 2") {
 		//Super Keiba 2 behaves incorrectly if save ram is filled with 0s

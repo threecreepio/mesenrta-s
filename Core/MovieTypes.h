@@ -32,8 +32,8 @@ const vector<string> ControllerTypeNames = {
 };
 
 const vector<string> RamStateNames = {
-	"AllZeros",
-	"AllOnes",
+	"Fixed55",
+	"FixedFF",
 	"Random"
 };
 

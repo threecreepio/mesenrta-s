@@ -25,7 +25,7 @@ namespace Mesen.GUI.Config
 		[MinMax(0, 1000)] public UInt32 PpuExtraScanlinesAfterNmi = 0;
 		[MinMax(100, 1000)] public UInt32 GsuClockSpeed = 100;
 
-		public RamState RamPowerOnState = RamState.AllZeros;
+		public RamState RamPowerOnState = RamState.Random;
 
 		public long BsxCustomDate = -1;
 
@@ -47,7 +47,7 @@ namespace Mesen.GUI.Config
 	public enum RamState
 	{
 		Random = 0,
-		AllZeros = 1,
-		AllOnes = 2,
+		Fixed55 = 1,
+		FixedFF = 2,
 	}
 }

@@ -256,8 +256,8 @@ struct InputConfig
 enum class RamState
 {
 	Random = 0,
-	AllZeros = 1,
-	AllOnes = 2,
+	Fixed55 = 1,
+	FixedFF = 2,
 };
 
 enum class ConsoleRegion

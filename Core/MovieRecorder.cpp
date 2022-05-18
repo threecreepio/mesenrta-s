@@ -110,8 +110,8 @@ void MovieRecorder::GetGameSettings(stringstream &out)
 	WriteInt(out, MovieKeys::GsuClockSpeed, emuConfig.GsuClockSpeed);
 	
 	switch(emuConfig.RamPowerOnState) {
-		case RamState::AllZeros: WriteString(out, MovieKeys::RamPowerOnState, "AllZeros"); break;
-		case RamState::AllOnes: WriteString(out, MovieKeys::RamPowerOnState, "AllOnes"); break;
+		case RamState::Fixed55: WriteString(out, MovieKeys::RamPowerOnState, "Fixed55"); break;
+		case RamState::FixedFF: WriteString(out, MovieKeys::RamPowerOnState, "FixedFF"); break;
 		case RamState::Random: WriteString(out, MovieKeys::RamPowerOnState, "AllOnes"); break; //TODO: Random memory isn't supported for movies yet
 	}
 

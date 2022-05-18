@@ -289,8 +289,8 @@ void EmuSettings::InitializeRam(void* data, uint32_t length)
 {
 	switch(_emulation.RamPowerOnState) {
 		default:
-		case RamState::AllZeros: memset(data, 0, length); break;
-		case RamState::AllOnes: memset(data, 0xFF, length); break;
+		case RamState::Fixed55: memset(data, 0x55, length); break;
+		case RamState::FixedFF: memset(data, 0xFF, length); break;
 		case RamState::Random:
 			std::uniform_int_distribution<> dist(0, 255);
 			for(uint32_t i = 0; i < length; i++) {

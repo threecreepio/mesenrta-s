@@ -137,7 +137,7 @@ void RecordedRomTest::Record(string filename, bool reset)
 		_console->GetSettings()->SetVideoConfig(videoCfg);
 
 		EmulationConfig emuCfg = _console->GetSettings()->GetEmulationConfig();
-		emuCfg.RamPowerOnState = RamState::AllZeros;
+		emuCfg.RamPowerOnState = RamState::Fixed55;
 		_console->GetSettings()->SetEmulationConfig(emuCfg);
 				
 		//Start recording movie alongside with screenshots
@@ -200,7 +200,7 @@ int32_t RecordedRomTest::Run(string filename)
 		settings->SetVideoConfig(cfg);
 
 		EmulationConfig emuCfg = _console->GetSettings()->GetEmulationConfig();
-		emuCfg.RamPowerOnState = RamState::AllZeros;
+		emuCfg.RamPowerOnState = RamState::Fixed55;
 		_console->GetSettings()->SetEmulationConfig(emuCfg);
 
 		_console->Lock();
